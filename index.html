@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,12 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f7f7f7;
-      padding: 20px;
+      background-image: url('https://img1.pixhost.to/images/5583/596158196_depayyy.jpg'); /* tempat untuk mengatur background image */
+      background-size: 100% 100vh;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 0;
+      margin: 0;
     }
     .container {
       max-width: 400px;
@@ -64,24 +69,25 @@
 <body>
   <div class="container">
     <div class="logo">
-      <img src="https:                                          
+      <img src="https://files.catbox.moe/se5vp0.jpg" alt="Logo Fad Store"> /* tempat untuk mengatur logo */
     </div>
     <h2 style="text-align: center;">Payment By Fad</h2>
     <div class="nomor-dana">
       <p style="font-size: 18px;">Nomor DANA: 082373442458</p>
       <button class="button" onclick="salinNomorDana()">Salin Nomor DANA</button>
+      <p id="salin-status"></p>
     </div>
     <div class="grup-wa">
-      <p style="font-size: 18px;">Grup WhatsApp Admin: <a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk grup</a></p>
+      <button class="button"><a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk Grup WA</a></button>
     </div>
     <div class="channel-wa">
-      <p style="font-size: 18px;">Channel WhatsApp: <a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel</a></p>                                                                      
+      <button class="button"><a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel WA</a></button>
     </div>
   </div>
   <script>
     function salinNomorDana() {
       navigator.clipboard.writeText("082373442458");
-      alert("Nomor DANA berhasil disalin!");
+      document.getElementById("salin-status").innerHTML = "Nomor DANA berhasil disalin!";
     }
   </script>
 </body>

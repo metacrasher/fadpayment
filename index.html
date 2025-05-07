@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: url('https://img1.pixhost.to/images/5583/596158196_depayyy.jpg'); /* tempat untuk mengatur background image */
+      background-image: url('https://img1.pixhost.to/images/5583/596158196_depayyy.jpg');
       background-size: 100% 100vh;
       background-position: center;
       background-repeat: no-repeat;
@@ -21,9 +22,9 @@
       border: 1px solid #ddd;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
     .logo {
-      text-align: center;
       margin-bottom: 20px;
     }
     .logo img {
@@ -41,9 +42,10 @@
     .channel-wa {
       margin-bottom: 20px;
     }
+    .qris {
+      margin-bottom: 20px;
+    }
     .button {
-      background-color: #4CAF50;
-      color: #fff;
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
@@ -52,39 +54,73 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-    .button:hover {
+    .button-green {
+      background-color: #4CAF50;
+      color: #fff;
+    }
+    .button-green:hover {
       background-color: #3e8e41;
+    }
+    .button-blue {
+      background-color: #03A9F4;
+      color: #fff;
+    }
+    .button-blue:hover {
+      background-color: #0288D1;
+    }
+    .button-red {
+      background-color: #FF9800;
+      color: #fff;
+    }
+    .button-red:hover {
+      background-color: #FF7700;
+    }
+    .button-purple {
+      background-color: #7A288A;
+      color: #fff;
+    }
+    .button-purple:hover {
+      background-color: #5C1A73;
     }
     .button a {
       color: #fff;
-    }
-    a:hover {
-      color: #fff;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <img src="https://files.catbox.moe/se5vp0.jpg" alt="Logo Fad Store"> /* tempat untuk mengatur logo */
+      <img src="https://files.catbox.moe/se5vp0.jpg" alt="Logo Fad Store">
     </div>
-    <h2 style="text-align: center; color: #fff;">Payment By Fad</h2>
+    <h2 style="color: #fff;">Payment By Fad</h2>
     <div class="nomor-dana">
       <p style="font-size: 18px; color: #fff;">Nomor DANA: 082373442458</p>
-      <button class="button" onclick="salinNomorDana()">Salin Nomor DANA</button>
+      <button class="button button-green" onclick="salinNomorDana()">Salin Nomor DANA</button>
       <p id="salin-status" style="color: #fff;"></p>
     </div>
     <div class="grup-wa">
-      <button class="button"><a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk Grup WA</a></button>
+      <button class="button button-blue"><a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk Grup WA</a></button>
     </div>
     <div class="channel-wa">
-      <button class="button"><a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel WA</a></button>
+      <button class="button button-red"><a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel WA</a></button>
+    </div>
+    <div class="qris">
+      <button class="button button-purple" onclick="downloadQris()">Download QRIS</button>
     </div>
   </div>
   <script>
     function salinNomorDana() {
       navigator.clipboard.writeText("082373442458");
       document.getElementById("salin-status").innerHTML = "Nomor DANA berhasil disalin!";
+    }
+    function downloadQris() {
+      const link = document.createElement('a');
+      link.href = 'https://img1.pixhost.to/images/5583/596163317_depayyy.jpg';
+      link.download = 'qris.jpg';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
   </script>
 </body>

@@ -6,8 +6,9 @@
   <title>Pembayaran Fad Store</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      padding: 20px;
     }
     .container {
       max-width: 400px;
@@ -26,6 +27,7 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     .nomor-dana {
       margin-bottom: 20px;
@@ -43,30 +45,42 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .button:hover {
+      background-color: #3e8e41;
+    }
+    a {
+      text-decoration: none;
+      color: #4CAF50;
+    }
+    a:hover {
+      color: #3e8e41;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">
-      <img src="https://files.catbox.moe/se5vp0.jpg" alt="Logo">
+      <img src="https:                                          
     </div>
-    <h2>Pembayaran</h2>
+    <h2 style="text-align: center;">Payment By Fad</h2>
     <div class="nomor-dana">
-      <p>Nomor DANA: 082373442458</p>
+      <p style="font-size: 18px;">Nomor DANA: 082373442458</p>
       <button class="button" onclick="salinNomorDana()">Salin Nomor DANA</button>
     </div>
     <div class="grup-wa">
-  <p>Grup WhatsApp Admin: <a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk grup</a></p>
-</div>
+      <p style="font-size: 18px;">Grup WhatsApp Admin: <a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk grup</a></p>
+    </div>
     <div class="channel-wa">
-      <p>Channel WhatsApp: <a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel</a></p>
+      <p style="font-size: 18px;">Channel WhatsApp: <a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel</a></p>                                                                      
     </div>
   </div>
-
   <script>
     function salinNomorDana() {
-      navigator.clipboard.writeText("08123456789");
+      navigator.clipboard.writeText("082373442458");
       alert("Nomor DANA berhasil disalin!");
     }
   </script>

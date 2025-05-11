@@ -1,127 +1,354 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pembayaran Fad Store</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I'm FadXD</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-image: url('https://img1.pixhost.to/images/5583/596158196_depayyy.jpg');
-      background-size: 100% 100vh;
-      background-position: center;
-      background-repeat: no-repeat;
-      padding: 0;
-      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
     }
-    .container {
+
+    .container, .main-content {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 2rem;
       max-width: 400px;
-      margin: 40px auto;
-      padding: 20px;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
       text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+      display: none;
+      animation: fadeIn 1s ease;
     }
-    .logo {
-      margin-bottom: 20px;
-    }
-    .logo img {
+
+    .profile-img {
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      object-fit: cover;
+      border: 3px solid white;
+      margin-bottom: 1rem;
     }
-    .nomor-dana {
-      margin-bottom: 20px;
+
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
     }
-    .grup-wa {
-      margin-bottom: 20px;
+
+    .typing-text {
+      font-size: 1rem;
+      color: #ddd;
+      margin-bottom: 1.5rem;
+      min-height: 1.5rem;
+      white-space: nowrap;
+      overflow: hidden;
     }
-    .channel-wa {
-      margin-bottom: 20px;
-    }
-    .qris {
-      margin-bottom: 20px;
-    }
-    .button {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      transition: background-color 0.3s ease;
-    }
-    .button-green {
-      background-color: #4CAF50;
-      color: #fff;
-    }
-    .button-green:hover {
-      background-color: #3e8e41;
-    }
-    .button-blue {
-      background-color: #03A9F4;
-      color: #fff;
-    }
-    .button-blue:hover {
-      background-color: #0288D1;
-    }
-    .button-red {
-      background-color: #FF9800;
-      color: #fff;
-    }
-    .button-red:hover {
-      background-color: #FF7700;
-    }
-    .button-purple {
-      background-color: #7A288A;
-      color: #fff;
-    }
-    .button-purple:hover {
-      background-color: #5C1A73;
-    }
-    .button a {
-      color: #fff;
+
+    .links a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
       text-decoration: none;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+    }
+
+    .links a:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.03);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+
+    .loading-screen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0f2027;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 9999;
+      animation: fadeOut 2s 2s forwards;
+    }
+
+    .loading-screen h1 {
+      font-size: 2rem;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .next-button {
+      background: linear-gradient(135deg, #00c9ff, #92fe9d);
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s ease;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .next-button:hover {
+      transform: scale(1.05);
+    }
+
+    .button-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .lyrics {
+      font-size: 0.85rem;
+      color: #ccc;
+      margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .product {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-img {
+      width: 100px;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .product h3 {
+      margin: 0.5rem 0;
+    }
+
+    .product p {
+      margin-bottom: 1rem;
+      color: #ddd;
+      font-size: 0.9rem;
+    }
+
+    .product .next-button {
+      display: inline-block;
+      margin-top: 0.5rem;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="logo">
-      <img src="https://files.catbox.moe/se5vp0.jpg" alt="Logo Fad Store">
-    </div>
-    <h2 style="color: #fff;">Payment By Fad</h2>
-    <div class="nomor-dana">
-      <p style="font-size: 18px; color: #fff;">Nomor DANA: 082373442458</p>
-      <button class="button button-green" onclick="salinNomorDana()">Salin Nomor DANA</button>
-      <p id="salin-status" style="color: #fff;"></p>
-    </div>
-    <div class="grup-wa">
-      <button class="button button-blue"><a href="https://chat.whatsapp.com/I5uE0G6IoB5EuxHbZNZOEL">Masuk Grup WA</a></button>
-    </div>
-    <div class="channel-wa">
-      <button class="button button-red"><a href="https://whatsapp.com/channel/0029Var9lmyLCoX4cLSt1Q3U">Follow Channel WA</a></button>
-    </div>
-    <div class="qris">
-      <button class="button button-purple" onclick="downloadQris()">Download QRIS</button>
+  <div class="loading-screen" id="loading">
+    <h1>Welcome, FadXD</h1>
+  </div>
+
+  <div class="container" id="intro">
+    <img src="https://files.catbox.moe/9gqktr.jpg" alt="Profile" class="profile-img">
+    <h1>FadXD</h1>
+    <div class="typing-text" id="introTyping"></div>
+    <div class="button-group">
+      <button class="next-button" onclick="goToMain()">Hi FadXD</button>
     </div>
   </div>
+
+  <div class="main-content" id="main">
+    <img src="https://files.catbox.moe/9gqktr.jpg" alt="Profile" class="profile-img">
+    <h1>FadXD</h1>
+    <div class="typing-text" id="mainTyping"></div>
+    <div class="links">
+      <a href="https://wa.me/6289508589392" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" class="icon" /> WhatsApp
+      </a>
+      <a href="https://youtube.com/@MetaCrasherOfficial" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="icon" /> YouTube
+      </a>
+      <a href="https://github.com/fadguyxyz" target="_blank">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" class="icon" /> GitHub
+      </a>
+    </div>
+    <div class="button-group">
+      <button class="next-button" onclick="showSection('shop')">Shop</button>
+      <button class="next-button" onclick="showSection('payment')">Payment</button>
+    </div>
+    <div class="lyrics" id="lyrics">Kenapa harus jatuh cinta kepada orang yang tak bisa dimiliki</div>
+    <div class="footer">
+      <p>© FadXD - 2019</p>
+    </div>
+  </div>
+
+  <div class="main-content" id="shop" style="display:none;">
+    <h1>Shop</h1>
+    <div class="product">
+      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
+      <h3>Bot Telegram</h3>
+      <p>Bot custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
+      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
+    </div>
+    <div class="product">
+      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
+      <h3>Bot WhatsApp</h3>
+      <p>Bot custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
+      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
+    </div>
+    <div class="product">
+      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
+      <h3>Jasa Pembuatan Script</h3>
+      <p>Script Custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
+      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
+    </div>
+    <div class="product">
+      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
+      <h3>Jasa Website</h3>
+      <p>Landing page, portofolio, dll.</p>
+      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
+    </div>
+    <button class="next-button" onclick="backToMain()">Back</button>
+  </div>
+
+  <div class="main-content" id="payment" style="display:none;">
+    <h1>Payment FadXD</h1>
+    <div class="product">
+      <img src="https://files.catbox.moe/rs5teo.jpg" class="product-img" alt="Dana">
+      <h3>Dana</h3>
+      <p>Salin Nomor Dana Di Bawah</p>
+      <button class="next-button" onclick="copyNumber('082373442458')">Copy</button>
+    </div>
+
+    <div class="product">
+      <img src="https://files.catbox.moe/kwuxbv.jpg" class="product-img" alt="OVO">
+      <h3>OVO</h3>
+      <p>Salin Nomor Ovo Dibawah</p>
+      <button class="next-button" onclick="copyNumber('belum tersedia')">Copy</button>
+    </div>
+
+    <div class="product">
+      <img src="https://files.catbox.moe/pvo95b.jpg" class="product-img" alt="GoPay">
+      <h3>GoPay</h3>
+      <p>Salin Nomor Gopay Dibawah</p>
+      <button class="next-button" onclick="copyNumber('belum tersedia')">Copy</button>
+    </div>
+  <div style="margin-top: 3rem; text-align: center;">
+    <h2 style="margin-bottom: 1rem;">Scan QRIS untuk Pembayaran</h2>
+    <img src="https://files.catbox.moe/0ghypy.jpg" alt="QRIS" style="max-width: 300px; width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
+  </div>
+    <button class="next-button" onclick="backToMain()">Back</button>
+  </div>
+
+  <audio id="audio" src="https://files.catbox.moe/yjzh3s.mp3" preload="auto"></audio>
+
   <script>
-    function salinNomorDana() {
-      navigator.clipboard.writeText("082373442458");
-      document.getElementById("salin-status").innerHTML = "Nomor DANA berhasil disalin!";
+    const loading = document.getElementById('loading');
+    const intro = document.getElementById('intro');
+    const main = document.getElementById('main');
+    const audio = document.getElementById('audio');
+
+    const texts = ["Web Payment", "Bot Developer", "Attacker"];
+    
+    function typeText(el, words) {
+      let index = 0, char = 0, isAttacker = false;
+      function type() {
+        if (!isAttacker && index < words.length) {
+          if (char <= words[index].length) {
+            el.textContent = words[index].slice(0, char++);
+            setTimeout(type, 100);
+          } else {
+            index++; char = 0;
+            setTimeout(type, 600);
+          }
+        } else if (!isAttacker) {
+          isAttacker = true;
+          el.innerHTML += "<br><span id='attackerText'></span>";
+          typeAttacker();
+        }
+      }
+      function typeAttacker() {
+        let attackerText = "© Created By FadXD";
+        let aText = document.getElementById("attackerText");
+        let aIndex = 0;
+        function aType() {
+          if (aIndex <= attackerText.length) {
+            aText.textContent = attackerText.slice(0, aIndex++);
+            setTimeout(aType, 120);
+          }
+        }
+        aType();
+      }
+      type();
     }
-    function downloadQris() {
-      const link = document.createElement('a');
-      link.href = 'https://img1.pixhost.to/images/5583/596163317_depayyy.jpg';
-      link.download = 'qris.jpg';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+
+    window.onload = () => {
+      setTimeout(() => {
+        loading.style.display = 'none';
+        intro.style.display = 'block';
+        typeText(document.getElementById("introTyping"), texts);
+      }, 2000);
+    };
+
+    function goToMain() {
+      intro.style.display = 'none';
+      main.style.display = 'block';
+      audio.play();
+      typeText(document.getElementById("mainTyping"), texts);
+    }
+
+    function showSection(section) {
+      document.querySelectorAll('.main-content').forEach(el => el.style.display = 'none');
+      document.getElementById(section).style.display = 'block';
+    }
+
+    function backToMain() {
+      document.querySelectorAll('.main-content').forEach(el => el.style.display = 'none');
+      main.style.display = 'block';
+    }
+
+    function copyNumber(number) {
+      navigator.clipboard.writeText(number);
+      alert("Nomor berhasil disalin!");
     }
   </script>
 </body>
-</html>
+  </html>

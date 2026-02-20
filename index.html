@@ -1,354 +1,356 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I'm FadXD</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FadXD ULTRA MODE</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
 
-    .container, .main-content {
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 2rem;
-      max-width: 400px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      display: none;
-      animation: fadeIn 1s ease;
-    }
+body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+overflow-x:hidden;
+}
 
-    .profile-img {
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid white;
-      margin-bottom: 1rem;
-    }
+/* ================= LOADER ================= */
+#loader{
+position:fixed;
+inset:0;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
 
-    h1 {
-      font-size: 1.8rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
+.loader-text{
+font-size:2rem;
+font-weight:800;
+background:linear-gradient(90deg,cyan,magenta,lime);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+animation:glitch 1s infinite;
+letter-spacing:3px;
+}
 
-    .typing-text {
-      font-size: 1rem;
-      color: #ddd;
-      margin-bottom: 1.5rem;
-      min-height: 1.5rem;
-      white-space: nowrap;
-      overflow: hidden;
-    }
+.progress-bar{
+width:260px;
+height:6px;
+background:rgba(255,255,255,.1);
+border-radius:20px;
+margin-top:25px;
+overflow:hidden;
+box-shadow:0 0 20px cyan;
+}
 
-    .links a {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      justify-content: center;
-      background: rgba(255, 255, 255, 0.15);
-      color: white;
-      text-decoration: none;
-      padding: 0.75rem 1rem;
-      margin: 0.5rem 0;
-      border-radius: 12px;
-      transition: all 0.3s ease;
-    }
+.progress{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,cyan,magenta,lime);
+animation:load 3s linear forwards;
+}
 
-    .links a:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: scale(1.03);
-    }
+@keyframes load{0%{width:0%}100%{width:100%}}
 
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #aaa;
-    }
+@keyframes glitch{
+0%{text-shadow:2px 2px cyan,-2px -2px magenta}
+50%{text-shadow:-2px -2px lime,2px 2px cyan}
+100%{text-shadow:2px -2px magenta,-2px 2px lime}
+}
 
-    .loading-screen {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: #0f2027;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 9999;
-      animation: fadeOut 2s 2s forwards;
-    }
+/* OVERLAY */
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.85);
+z-index:-2;
+}
 
-    .loading-screen h1 {
-      font-size: 2rem;
-      animation: pulse 1s infinite;
-    }
+/* CARD */
+.container,.main-content{
+background:rgba(255,255,255,0.05);
+backdrop-filter:blur(25px);
+border-radius:25px;
+padding:2rem;
+width:100%;
+max-width:420px;
+text-align:center;
+border:1px solid rgba(255,255,255,.1);
+box-shadow:0 0 25px cyan;
+display:none;
+animation:fadeIn 1s ease;
+transition:.4s;
+}
 
-    @keyframes pulse {
-      0%, 100% { opacity: 0.6; }
-      50% { opacity: 1; }
-    }
+/* 🔥 ENTER SYSTEM CENTER FIX */
+.container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:15px;
+}
 
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
-    }
+.container .next-button{
+width:75%;
+margin-top:15px;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+.container:hover,.main-content:hover{
+transform:scale(1.03);
+}
 
-    .next-button {
-      background: linear-gradient(135deg, #00c9ff, #92fe9d);
-      color: #000;
-      font-weight: bold;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: 0.3s ease;
-      min-width: 120px;
-      text-align: center;
-    }
+.profile-img{
+width:120px;
+height:120px;
+border-radius:50%;
+border:3px solid cyan;
+box-shadow:0 0 25px cyan;
+margin-bottom:1rem;
+}
 
-    .next-button:hover {
-      transform: scale(1.05);
-    }
+h1{
+font-weight:800;
+font-size:2rem;
+background:linear-gradient(90deg,cyan,magenta,lime);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
 
-    .button-group {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 1rem;
-    }
+.typing-text{
+margin:1rem 0;
+min-height:22px;
+color:#ddd;
+letter-spacing:2px;
+}
 
-    .lyrics {
-      font-size: 0.85rem;
-      color: #ccc;
-      margin-top: 1rem;
-      font-style: italic;
-    }
+.next-button,.links a{
+display:block;
+margin:10px auto;
+padding:12px;
+border-radius:20px;
+font-weight:700;
+text-decoration:none;
+color:black;
+background:linear-gradient(90deg,cyan,magenta,lime);
+background-size:300%;
+transition:.4s;
+cursor:pointer;
+width:80%;
+}
 
-    .icon {
-      width: 20px;
-      height: 20px;
-    }
+.next-button:hover,.links a:hover{
+background-position:100%;
+transform:scale(1.07);
+}
 
-    .product {
-      background: rgba(255,255,255,0.05);
-      border-radius: 12px;
-      padding: 1rem;
-      margin-bottom: 1.5rem;
-    }
+.product{
+background:rgba(255,255,255,0.06);
+border-radius:20px;
+padding:1rem;
+margin-bottom:1rem;
+}
 
-    .product-img {
-      width: 100px;
-      height: auto;
-      margin-bottom: 0.5rem;
-    }
+.product img{
+width:100%;
+border-radius:15px;
+margin-top:10px;
+}
 
-    .product h3 {
-      margin: 0.5rem 0;
-    }
+.button-group{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+justify-content:center;
+}
 
-    .product p {
-      margin-bottom: 1rem;
-      color: #ddd;
-      font-size: 0.9rem;
-    }
+.footer{
+margin-top:1rem;
+font-size:.8rem;
+color:#aaa;
+}
 
-    .product .next-button {
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-  </style>
+.toast{
+position:fixed;
+bottom:30px;
+left:50%;
+transform:translateX(-50%) scale(0.8);
+background:linear-gradient(90deg,cyan,magenta,lime);
+color:black;
+padding:12px 25px;
+border-radius:30px;
+font-weight:700;
+opacity:0;
+transition:.4s;
+z-index:9999;
+box-shadow:0 0 30px cyan;
+}
+
+.toast.show{
+opacity:1;
+transform:translateX(-50%) scale(1);
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+</style>
 </head>
+
 <body>
-  <div class="loading-screen" id="loading">
-    <h1>Welcome, FadXD</h1>
-  </div>
 
-  <div class="container" id="intro">
-    <img src="https://files.catbox.moe/9gqktr.jpg" alt="Profile" class="profile-img">
-    <h1>FadXD</h1>
-    <div class="typing-text" id="introTyping"></div>
-    <div class="button-group">
-      <button class="next-button" onclick="goToMain()">Hi FadXD</button>
-    </div>
-  </div>
+<!-- LOADER -->
+<div id="loader">
+<div class="loader-text">INITIALIZING SYSTEM...</div>
+<div class="progress-bar">
+<div class="progress"></div>
+</div>
+</div>
 
-  <div class="main-content" id="main">
-    <img src="https://files.catbox.moe/9gqktr.jpg" alt="Profile" class="profile-img">
-    <h1>FadXD</h1>
-    <div class="typing-text" id="mainTyping"></div>
-    <div class="links">
-      <a href="https://wa.me/6289508589392" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" class="icon" /> WhatsApp
-      </a>
-      <a href="https://youtube.com/@MetaCrasherOfficial" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" class="icon" /> YouTube
-      </a>
-      <a href="https://github.com/fadguyxyz" target="_blank">
-        <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" class="icon" /> GitHub
-      </a>
-    </div>
-    <div class="button-group">
-      <button class="next-button" onclick="showSection('shop')">Shop</button>
-      <button class="next-button" onclick="showSection('payment')">Payment</button>
-    </div>
-    <div class="lyrics" id="lyrics">Kenapa harus jatuh cinta kepada orang yang tak bisa dimiliki</div>
-    <div class="footer">
-      <p>© FadXD - 2019</p>
-    </div>
-  </div>
+<!-- INTRO -->
+<div class="container" id="intro">
+<img src="https://files.catbox.moe/9gqktr.jpg" class="profile-img">
+<h1>FadXD</h1>
+<div class="typing-text" id="introTyping"></div>
+<button class="next-button" onclick="goToMain()">CLICK HERE</button>
+</div>
 
-  <div class="main-content" id="shop" style="display:none;">
-    <h1>Shop</h1>
-    <div class="product">
-      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
-      <h3>Bot Telegram</h3>
-      <p>Bot custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
-      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
-    </div>
-    <div class="product">
-      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
-      <h3>Bot WhatsApp</h3>
-      <p>Bot custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
-      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
-    </div>
-    <div class="product">
-      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
-      <h3>Jasa Pembuatan Script</h3>
-      <p>Script Custom sesuai kebutuhanmu, bot cpanel, bug, dll.</p>
-      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
-    </div>
-    <div class="product">
-      <img src="https://files.catbox.moe/9gqktr.jpg" alt="Product" class="product-img">
-      <h3>Jasa Website</h3>
-      <p>Landing page, portofolio, dll.</p>
-      <a href="https://wa.me/6289508589392" target="_blank" class="next-button">Buy</a>
-    </div>
-    <button class="next-button" onclick="backToMain()">Back</button>
-  </div>
+<!-- MAIN -->
+<div class="main-content" id="main">
+<img src="https://files.catbox.moe/9gqktr.jpg" class="profile-img">
+<h1>FadXD</h1>
+<div class="typing-text" id="mainTyping"></div>
 
-  <div class="main-content" id="payment" style="display:none;">
-    <h1>Payment FadXD</h1>
-    <div class="product">
-      <img src="https://files.catbox.moe/rs5teo.jpg" class="product-img" alt="Dana">
-      <h3>Dana</h3>
-      <p>Salin Nomor Dana Di Bawah</p>
-      <button class="next-button" onclick="copyNumber('082373442458')">Copy</button>
-    </div>
+<div class="links">
+<a href="https://wa.me/6285273114090" target="_blank">WhatsApp</a>
+<a href="https://youtube.com/@MetaCrasherOfficial" target="_blank">YouTube</a>
+<a href="https://github.com/fadguyxyz" target="_blank">GitHub</a>
+</div>
 
-    <div class="product">
-      <img src="https://files.catbox.moe/kwuxbv.jpg" class="product-img" alt="OVO">
-      <h3>OVO</h3>
-      <p>Salin Nomor Ovo Dibawah</p>
-      <button class="next-button" onclick="copyNumber('belum tersedia')">Copy</button>
-    </div>
+<div class="button-group">
+<button class="next-button" onclick="showSection('shop')">Shop</button>
+<button class="next-button" onclick="showSection('payment')">Payment</button>
+</div>
 
-    <div class="product">
-      <img src="https://files.catbox.moe/pvo95b.jpg" class="product-img" alt="GoPay">
-      <h3>GoPay</h3>
-      <p>Salin Nomor Gopay Dibawah</p>
-      <button class="next-button" onclick="copyNumber('belum tersedia')">Copy</button>
-    </div>
-  <div style="margin-top: 3rem; text-align: center;">
-    <h2 style="margin-bottom: 1rem;">Scan QRIS untuk Pembayaran</h2>
-    <img src="https://files.catbox.moe/0ghypy.jpg" alt="QRIS" style="max-width: 300px; width: 100%; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);" />
-  </div>
-    <button class="next-button" onclick="backToMain()">Back</button>
-  </div>
+<div class="footer">© FadXD ULTRA MODE</div>
+</div>
 
-  <audio id="audio" src="https://files.catbox.moe/yjzh3s.mp3" preload="auto"></audio>
+<!-- SHOP -->
+<div class="main-content" id="shop">
+<h1>Shop</h1>
+<div class="product">
+<h3>Bot Telegram</h3>
+<p>Bot custom sesuai kebutuhanmu</p>
+<a href="https://wa.me/6285273114090" target="_blank" class="next-button">Buy</a>
+</div>
+<button class="next-button" onclick="backToMain()">Back</button>
+</div>
 
-  <script>
-    const loading = document.getElementById('loading');
-    const intro = document.getElementById('intro');
-    const main = document.getElementById('main');
-    const audio = document.getElementById('audio');
+<!-- PAYMENT -->
+<div class="main-content" id="payment">
+<h1>Payment</h1>
 
-    const texts = ["Web Payment", "Bot Developer", "Attacker"];
-    
-    function typeText(el, words) {
-      let index = 0, char = 0, isAttacker = false;
-      function type() {
-        if (!isAttacker && index < words.length) {
-          if (char <= words[index].length) {
-            el.textContent = words[index].slice(0, char++);
-            setTimeout(type, 100);
-          } else {
-            index++; char = 0;
-            setTimeout(type, 600);
-          }
-        } else if (!isAttacker) {
-          isAttacker = true;
-          el.innerHTML += "<br><span id='attackerText'></span>";
-          typeAttacker();
-        }
-      }
-      function typeAttacker() {
-        let attackerText = "© Created By FadXD";
-        let aText = document.getElementById("attackerText");
-        let aIndex = 0;
-        function aType() {
-          if (aIndex <= attackerText.length) {
-            aText.textContent = attackerText.slice(0, aIndex++);
-            setTimeout(aType, 120);
-          }
-        }
-        aType();
-      }
-      type();
-    }
+<div class="product">
+<h3>Dana</h3>
+<p>082373442458</p>
+<button class="next-button" onclick="copyNumber(event,'082373442458')">Copy</button>
+</div>
 
-    window.onload = () => {
-      setTimeout(() => {
-        loading.style.display = 'none';
-        intro.style.display = 'block';
-        typeText(document.getElementById("introTyping"), texts);
-      }, 2000);
-    };
+<div class="product">
+<h3>OVO</h3>
+<p>belum tersedia</p>
+<button class="next-button" onclick="copyNumber(event,'belum tersedia')">Copy</button>
+</div>
 
-    function goToMain() {
-      intro.style.display = 'none';
-      main.style.display = 'block';
-      audio.play();
-      typeText(document.getElementById("mainTyping"), texts);
-    }
+<div class="product">
+<h3>GoPay</h3>
+<p>belum tersedia</p>
+<button class="next-button" onclick="copyNumber(event,'belum tersedia')">Copy</button>
+</div>
 
-    function showSection(section) {
-      document.querySelectorAll('.main-content').forEach(el => el.style.display = 'none');
-      document.getElementById(section).style.display = 'block';
-    }
+<div class="product">
+<h3>QRIS</h3>
+<img src="https://files.catbox.moe/0ghypy.jpg">
+</div>
 
-    function backToMain() {
-      document.querySelectorAll('.main-content').forEach(el => el.style.display = 'none');
-      main.style.display = 'block';
-    }
+<button class="next-button" onclick="backToMain()">Back</button>
+</div>
 
-    function copyNumber(number) {
-      navigator.clipboard.writeText(number);
-      alert("Nomor berhasil disalin!");
-    }
-  </script>
+<div class="toast" id="toast">Copied!</div>
+
+<audio id="audio" src="https://files.catbox.moe/yjzh3s.mp3" loop></audio>
+
+<script>
+window.addEventListener("load",()=>{
+setTimeout(()=>{
+document.getElementById("loader").style.display="none";
+document.getElementById("intro").style.display="flex";
+typeLoop(document.getElementById("introTyping"));
+},3000);
+});
+
+const gifs=[
+"https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif",
+"https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif"
+];
+document.body.style.backgroundImage=
+`url('${gifs[Math.floor(Math.random()*gifs.length)]}')`;
+
+const words=["WEB PAYMENT","BOT DEVELOPER","ATTACKER MODE"];
+
+function typeLoop(el){
+let i=0,j=0,del=false;
+function type(){
+let current=words[i];
+if(!del){
+el.textContent=current.slice(0,++j);
+if(j===current.length){del=true;setTimeout(type,800);return;}
+}else{
+el.textContent=current.slice(0,--j);
+if(j===0){del=false;i=(i+1)%words.length;}
+}
+setTimeout(type,70);
+}
+type();
+}
+
+function goToMain(){
+document.getElementById('intro').style.display='none';
+document.getElementById('main').style.display='block';
+document.getElementById('audio').play();
+typeLoop(document.getElementById("mainTyping"));
+}
+
+function showSection(id){
+document.querySelectorAll('.main-content').forEach(e=>e.style.display='none');
+document.getElementById(id).style.display='block';
+}
+
+function backToMain(){
+document.querySelectorAll('.main-content').forEach(e=>e.style.display='none');
+document.getElementById('main').style.display='block';
+}
+
+function copyNumber(event,number){
+navigator.clipboard.writeText(number);
+const toast=document.getElementById("toast");
+toast.textContent="Nomor berhasil disalin ✓";
+toast.classList.add("show");
+setTimeout(()=>toast.classList.remove("show"),2000);
+}
+</script>
+
 </body>
-  </html>
+</html>
